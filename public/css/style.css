@@ -123,8 +123,13 @@ footer{
 }
 @media (max-width: 900px) {
     #map{
-        width: 45vh;
+        width: 50vh;
         height: 300px;
+    }
+}
+@media (max-width: 768px) {
+    .flash-message {
+        width: 70%; 
     }
 }
 @media (max-width: 600px) {
@@ -138,37 +143,26 @@ footer{
         flex: 1 1 100%; 
         max-width: 20rem;
     }
-    #map{
-        width: 35vh;
-        height: 250px;
-    }
-}
-@media (max-width: 768px) {
-    .flash-message {
-        width: 70%; 
-    }
 }
 @media (max-width: 480px) {
     .flash-message {
         width: 60%; 
         font-size: 1rem;
     }
-}
-@media (max-width: 480px) {
     #map{
-        width: 35vh;
+        width: 43vh;
         height: 250px;
     }
 }
 @media (max-width: 400px) {
     #map{
-        width: 32vh;
+        width: 41vh;
         height: 250px;
     }
 }
 @media (max-width: 350px) {
     #map{
-        width: 27vh;
+        width: 33vh;
         height: 250px;
     }
 }
