@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate") %>
+<div class="signup-container">
+    <h2 class="text-center mt-5">Login to Wanderlust</h2>
+    <br>
+    <div class="row mt-2">
+        <form action="/login" method="POST" novalidate class="needs-validation">
+            <div class="mb-4">
+                <label for="username" class="form-label fw-semibold">Username:</label>
+                <input type="text" name="username"  placeholder="Enter Useranme" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label fw-semibold">Password:</label>
+                <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
+            </div>
+            
+            <div class="d-grid">
+                <button type="submit" class="btn btn-success btn-md mt-3">Log In</button>
+            </div>
+        </form>
+    </div>
+</div>

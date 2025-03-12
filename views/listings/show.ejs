@@ -1,0 +1,110 @@
+<% layout("/layouts/boilerplate") %>
+<script>
+    const mapToken="<%= process.env.MAPBOX_API_KEY %>"
+    const coordinates=JSON.parse('<%- JSON.stringify(listing.geometry.coordinates) %>')
+</script>
+<body>
+    <style>
+        .mt-5{
+            margin-top: 3px !important;
+        }
+        .no-hover-effect {
+            transition: none !important;
+            transform: none !important;
+        }
+    </style>
+    <div class="container mt-5 d-flex justify-content-center">
+        <div class="card shadow p-4 no-hover-effect" style="max-width: 32rem;">
+            <img src="<%= listing.image.url %>" class="card-img-top rounded mb-2" alt="<%= listing.title %>" style="height: 16rem; object-fit: cover;">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-3"><%= listing.title %></h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Owner:</strong> <%= listing.owner.username %></li>
+                    <li class="list-group-item"><strong>Description:</strong> <%= listing.description %></li>
+                    <li class="list-group-item"><strong>Price:</strong> &#8377; <%= listing.price.toLocaleString("en-IN") %></li>
+                    <li class="list-group-item"><strong>Location:</strong> <%= listing.location %></li>
+                    <li class="list-group-item"><strong>Country:</strong> <%= listing.country %></li>
+                </ul>
+                <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <a href="/listings/<%= listing._id %>/edit" class="btn btn-warning px-3">Edit Listing</a>
+                        <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete Listing</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3 style="text-align: left;" class="mb-3">Location📍</h3>
+        <div id="map"></div>
+        <script src="/js/map.js"></script>
+    </div>
+    
+    <% if(listing.reviews.length>0){ %>
+    <div class="container">
+        <h1 style="text-decoration: underline;" class="mb-0">Reviews</h1>
+    </div>
+    <div class="container mt-0">
+        <div class="row justify-content-center">
+            <div class="col">
+                <% if (listing.reviews.length > 0) { %>
+                    <ul class="list-group list-group-flush">
+                        <% listing.reviews.forEach(review => { %>
+                            <span><b>@<%= review.author.username %></b></span>
+                            <li class="list-group-item">
+                                <b>Rating:</b> 
+                                <span class="badge bg-primary p-1 me-2" style="font-size: 1rem;">
+                                    <%= review.rating %>⭐
+                                </span>
+                                <br>
+                                <b>Comment:</b> <%= review.comment %>
+                                <br>
+                                <small class="text-muted">Posted on <%= review.createdAt.toDateString() %></small>
+                                <br>
+                                <% if(currUser && currUser._id.equals(review.author._id)){ %>
+                                    <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="mt-2 mb-1">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                <% } %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p class="text-center text-muted">No reviews yet. Be the first to leave one!</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+          
+    <% if(currUser){ %>
+    <div class="container mb-2">
+        <div class="card shadow p-4 no-hover-effect" style="max-width: 32rem; margin: auto;">
+            <h3 class="text-center">Leave a Review</h3>
+            <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="rating" class="form-label"><b>Rating (1-5):</b></label>
+                    <select class="form-select" name="rating" id="rating" required>
+                        <option value="" disabled selected>Select a rating</option>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="3">3 - Good</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a rating</div>
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label"><b>Comment:</b></label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" placeholder="Write your review here..." required></textarea>
+                    <div class="invalid-feedback">Please provide some comments for review</div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    <% } %>
+</body>

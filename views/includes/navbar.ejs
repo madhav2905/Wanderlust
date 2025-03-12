@@ -1,0 +1,49 @@
+<style>
+    .search-btn{
+        background-color: #fe424d;
+        color: white;
+        border-radius: 25px;
+        margin-left: 2px;
+    }
+    .search-btn:hover{
+        background-color: #fe424d;
+        color: white;
+    }
+    .search-btn i{
+        display: inline;
+        margin-right: 6px;
+    }
+</style>
+
+<nav class="navbar navbar-expand-md border-bottom sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/listings"><img src="https://cdn-icons-png.flaticon.com/512/13373/13373808.png" alt="logo" width="60" height="60"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/listings" style="font-size: 18px;">Explore</a>
+                <a class="nav-link" href="/listings/new" style="font-size: 18px;">Add New Listing</a>
+            </div> 
+
+            <div class="navbar nav ms-auto">
+                <form class="d-flex" role="search" action="/listings" method="GET">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search Destinations">
+                    <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                </form>
+            </div>
+
+            <div class="navbar-nav ms-auto">
+                <% if(!currUser) { %>
+                    <a class="nav-link" href="/signup" style="margin-right: 5px; font-size: 18px;"><b>Sign Up</b></a>
+                    <a class="nav-link" href="/login" style="margin-right: 50px; font-size: 18px;"><b>Log In</b></a>
+                <% } %>
+
+                <% if(currUser) { %>
+                    <a class="nav-link" href="/logout" style="margin-right: 50px; font-size: 18px;"><b>Log Out</b></a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
