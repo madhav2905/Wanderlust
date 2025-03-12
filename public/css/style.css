@@ -162,7 +162,13 @@ footer{
 }
 @media (max-width: 400px) {
     #map{
-        width: 28vh;
+        width: 32vh;
+        height: 250px;
+    }
+}
+@media (max-width: 350px) {
+    #map{
+        width: 27vh;
         height: 250px;
     }
 }
