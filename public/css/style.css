@@ -156,7 +156,13 @@ footer{
 }
 @media (max-width: 480px) {
     #map{
-        width: 30vh;
+        width: 35vh;
+        height: 250px;
+    }
+}
+@media (max-width: 400px) {
+    #map{
+        width: 28vh;
         height: 250px;
     }
 }
