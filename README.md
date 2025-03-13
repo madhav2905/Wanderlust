@@ -32,7 +32,7 @@ Wanderlust follows the **Model-View-Controller (MVC) architecture**, ensuring be
 - **Controller**: Handles application logic and user requests
 
 ### Live Demo
-Check out the live demo of Wanderlust here: [Wanderlust Live](https://wanderlust-vv83.onrender.com/listings)
+Check out the live demo of Wanderlust here: [Wanderlust Live](https://wanderlust-vv83.onrender.com/listings).
 
 ## Deployment & Hosting
 - **Cloudinary** – Image hosting
@@ -48,4 +48,4 @@ This project is open-source. Feel free to use and modify it as needed.
 
 ### Author
 
-Developed by Madhav Bhudhiraja. Connect with me on [LinkedIn](www.linkedin.com/in/madhav-bhudhiraja-40a6b0291)!
+Developed by Madhav Bhudhiraja. Connect with me on [LinkedIn](https://www.linkedin.com/in/madhav-bhudhiraja-40a6b0291)!
